@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>홍합 2kg 10원 — 알림받기 오픈 기념</title>
+<meta name="description" content="매일 아침 삶아서 확인하는 손질 생홍합. 알림받기 오픈 기념, 선착순 250분께 2kg을 10원에 드립니다.">
+<meta property="og:title" content="홍합 2kg 10원 · 선착순 250분">
+<meta property="og:description" content="알림받기 오픈 기념 — 매일 아침 삶아서 확인하는 거제·마산 손질 생홍합">
+<meta property="og:image" content="img/today.jpg">
+<meta property="og:type" content="website">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1d3557;
+    --red: #e63946;
+    --green: #0f7d6c;
+    --bg-alt: #f6f8fa;
+    --line: #e3e8ee;
+    --text: #2b2f36;
+    --dim: #667085;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, "Malgun Gothic", sans-serif;
+    color: var(--text); background: #fff; line-height: 1.65;
+    font-size: 18px; word-break: keep-all;
+  }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 0 22px; }
+  section { padding: 56px 0; }
+  img { max-width: 100%; display: block; border-radius: 18px; }
+
+  /* ── 1 히어로 ── */
+  .hero { background: var(--navy); color: #fff; padding: 48px 0 56px; text-align: center; }
+  .hero .badge {
+    display: inline-block; background: rgba(255,255,255,.14); border-radius: 999px;
+    padding: 8px 20px; font-size: 16px; margin-bottom: 22px; letter-spacing: .5px;
+  }
+  .hero h1 { font-size: 44px; line-height: 1.25; font-weight: 800; }
+  .hero h1 .was-line { display: block; margin-top: 14px; }
+  .hero h1 .was {
+    position: relative; display: inline-block;
+    font-size: 26px; font-weight: 600; color: #8fa3ba; padding: 0 6px;
+  }
+  .hero h1 .was::after {
+    content: ""; position: absolute; left: -2px; right: -2px; top: 52%;
+    height: 2px; background: var(--red); transform: rotate(-7deg);
+  }
+  .hero h1 .won { color: #ffd166; font-size: 64px; display: block; margin-top: 2px; }
+  .hero .sub { margin-top: 18px; font-size: 19px; color: #cfd8e3; }
+  .hero .sub b { color: #fff; }
+  .hero .photo { margin: 30px auto 0; max-width: 460px; }
+  .hero .caption { font-size: 15px; color: #9fb0c3; margin-top: 10px; }
+
+  /* ── CTA 버튼 ── */
+  .cta {
+    display: block; background: var(--red); color: #fff; text-decoration: none;
+    text-align: center; font-size: 22px; font-weight: 800; border-radius: 16px;
+    padding: 20px 10px; margin-top: 28px; box-shadow: 0 4px 0 #b32836;
+  }
+  .cta:active { transform: translateY(2px); box-shadow: 0 2px 0 #b32836; }
+  .cta small { display: block; font-size: 15px; font-weight: 500; opacity: .9; margin-top: 4px; }
+
+  /* ── 공통 제목 ── */
+  h2 { font-size: 28px; color: var(--navy); font-weight: 800; line-height: 1.4; margin-bottom: 20px; }
+  .alt { background: var(--bg-alt); }
+
+  /* ── 2 명분 ── */
+  .letter {
+    background: #fff; border: 2px solid var(--line); border-radius: 18px;
+    padding: 28px 26px; font-size: 18px;
+  }
+  .letter p + p { margin-top: 14px; }
+  .letter .sign { margin-top: 20px; text-align: right; color: var(--dim); font-size: 16px; }
+  .promise {
+    background: #eef6f4; border-radius: 12px; padding: 16px 18px; margin-top: 18px;
+    color: var(--green); font-weight: 700; font-size: 18px;
+  }
+
+  /* ── 3 받는 법 ── */
+  .steps { display: flex; flex-direction: column; gap: 14px; }
+  .step {
+    display: flex; align-items: flex-start; gap: 16px;
+    background: #fff; border: 2px solid var(--line); border-radius: 16px; padding: 20px;
+  }
+  .step .n {
+    flex: 0 0 44px; height: 44px; border-radius: 50%; background: var(--navy);
+    color: #fff; font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: center;
+  }
+  .step b { color: var(--navy); }
+  .step .note { font-size: 15px; color: var(--dim); margin-top: 4px; }
+  .price-flow {
+    margin-top: 26px; background: var(--navy); color: #fff; border-radius: 16px;
+    padding: 22px; text-align: center; font-size: 19px;
+  }
+  .price-flow .flow { font-size: 22px; font-weight: 700; margin-top: 8px; }
+  .price-flow .flow .final { color: #ffd166; font-size: 34px; font-weight: 800; }
+  .price-flow .fine { font-size: 14px; color: #9fb0c3; margin-top: 10px; }
+
+  /* ── 4 왜 지금 ── */
+  .season p { margin-top: 14px; }
+  .season .photo { margin-top: 22px; }
+  .season .caption { font-size: 15px; color: var(--dim); margin-top: 8px; text-align: center; }
+
+  /* ── 5 리뷰 ── */
+  .review {
+    background: #fff; border-left: 5px solid var(--green); border-radius: 12px;
+    padding: 18px 20px; font-size: 18px; margin-top: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+  }
+  .review .who { font-size: 14px; color: var(--dim); margin-top: 8px; }
+  .trust { text-align: center; margin-top: 24px; font-size: 19px; color: var(--navy); font-weight: 700; }
+
+  /* ── 6 안내 ── */
+  .notice { font-size: 15px; color: var(--dim); line-height: 1.8; margin-top: 24px; }
+  .notice li { list-style: none; padding-left: 14px; position: relative; }
+  .notice li::before { content: "·"; position: absolute; left: 2px; }
+  footer { text-align: center; padding: 30px 0 46px; font-size: 14px; color: var(--dim); }
+</style>
+</head>
+<body>
+
+<!-- 1 · 히어로 -->
+<div class="hero">
+  <div class="wrap">
+    <div class="badge">알림받기 오픈 기념 · 선착순 250분</div>
+    <h1>손질 생홍합 2kg<span class="was-line"><span class="was">2,900원</span></span><span class="won">10원</span></h1>
+    <p class="sub">거제·마산 <b>당일채취 당일발송</b> · 매일 아침 직접 삶아 확인합니다</p>
+    <div class="photo">
+      <img src="img/today.jpg" alt="오늘의 홍합 — 자를 대고 찍은 실측 사진">
+      <p class="caption">매일 아침 올리는 「오늘의 홍합」 실측 사진</p>
+    </div>
+    <a class="cta" href="https://smartstore.naver.com/iamfreash" target="_blank" rel="noopener">
+      스토어에서 쿠폰 받기
+      <small>알림받기 누르면 쿠폰이 발급됩니다</small>
+    </a>
+  </div>
+</div>
+
+<!-- 2 · 명분 -->
+<section>
+  <div class="wrap">
+    <h2>왜 10원에 드리냐면요</h2>
+    <div class="letter">
+      <p>저는 홍합 양식 집안에서 나고 자라 15년째 홍합만 팔고 있습니다. 2024년 2월부터 하루도 빼놓지 않고, <b>그날 나갈 홍합을 아침에 직접 삶아서</b> 사진으로 올려왔습니다.</p>
+      <p>홍합은 생물이라 상태가 매일 다릅니다. 그래서 좋다는 말 대신 <b>오늘 상태를 그대로 보여드리고, 판단은 손님께 맡겨</b> 왔습니다.</p>
+      <p>이제 그 「오늘의 홍합」을 알림으로도 보내드리려 합니다. 시작 기념으로, 저희 홍합을 아직 못 드셔본 분들께 2kg을 10원에 드립니다.</p>
+      <div class="promise">약속드립니다 — 알림은 알이 특별히 좋은 날과 이벤트 있는 날에만 보냅니다.</div>
+      <p class="sign">홍합몰 · 삼보수산 우동한 드림</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · 받는 법 -->
+<section class="alt">
+  <div class="wrap">
+    <h2>받는 법, 세 걸음이면 됩니다</h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><div>아래 버튼을 눌러 <b>스토어로 이동</b>합니다</div></div>
+      <div class="step"><div class="n">2</div><div>스토어 상단의 <b>「알림받기」</b>를 누릅니다<div class="note">누르는 순간 2,890원 쿠폰이 발급됩니다</div></div></div>
+      <div class="step"><div class="n">3</div><div><b>2kg 옵션</b>을 고르고 쿠폰을 적용합니다<div class="note">결제 금액이 10원이 됩니다 (배송비 별도)</div></div></div>
+    </div>
+    <div class="price-flow">
+      손질 생홍합 2kg
+      <div class="flow">2,900원 → 쿠폰 2,890원 → <span class="final">10원</span></div>
+      <div class="fine">쿠폰은 전 상품에 사용 가능 · 회원 ID당 1회</div>
+    </div>
+    <a class="cta" href="https://smartstore.naver.com/iamfreash" target="_blank" rel="noopener">
+      스토어에서 쿠폰 받기
+      <small>선착순 250분 · 소진 시 마감됩니다</small>
+    </a>
+  </div>
+</section>
+
+<!-- 4 · 왜 지금 -->
+<section>
+  <div class="wrap season">
+    <h2>홍합, 겨울 음식 아니냐고요?</h2>
+    <p>홍합탕은 겨울에 찾지만, <b>홍합 알이 굵어지는 계절은 여름</b>입니다. 살이 차고 빠지기를 반복하며 자라는 생물이라, 지금이 1년 중 알이 가장 여문 시기예요.</p>
+    <p>매일 삶아서 확인하는 사람이 드리는 말씀입니다. <b>홍합을 제일 좋을 때 드셔보실 기회</b>라 지금 이 이벤트를 엽니다.</p>
+    <div class="photo">
+      <img src="img/boiled.jpg" alt="삶은 홍합">
+      <p class="caption">홍합미역국 한 그릇 — 여름 홍합은 국물이 이렇게 우러납니다</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · 리뷰 -->
+<section class="alt">
+  <div class="wrap">
+    <h2>손님들이 남긴 말</h2>
+    <div class="review">"매일 사진 올라오니까 수율 확인도 되고 믿고 구매해도 되는 곳이에요!!!!"<div class="who">스마트스토어 구매 리뷰</div></div>
+    <div class="review">"리뷰 검색하지 마시고 그냥 시키세요"<div class="who">스마트스토어 구매 리뷰</div></div>
+    <div class="review">"맛있어요! 알도 굵어요. 오자마자 삶아서 소분. 바다맛 단맛 감칠맛 싱싱한 홍합맛 제대로네요."<div class="who">2026년 8월 구매 리뷰</div></div>
+    <p class="trust">리뷰 1,314개 · 평점 4.78</p>
+  </div>
+</section>
+
+<!-- 6 · CTA + 안내 -->
+<section>
+  <div class="wrap">
+    <h2>선착순 250분, 소진되면 마감합니다</h2>
+    <a class="cta" href="https://smartstore.naver.com/iamfreash" target="_blank" rel="noopener">
+      스토어에서 쿠폰 받기
+      <small>알림받기 누르면 쿠폰이 발급됩니다</small>
+    </a>
+    <ul class="notice">
+      <li>평일 13시 주문 마감 · 당일 발송 · 다음날 도착 (토·일요일 발송 없음)</li>
+      <li>배송비 4,000원 별도 (3개마다 부과) · 제주·도서산간 가능</li>
+      <li>쿠폰: 2,890원 상품중복할인 · 알림받기 고객 대상 · 회원 ID당 1회 발급</li>
+      <li>생물 특성상 알 크기·상태는 매일 다릅니다 — 매일 아침 「오늘의 홍합」 사진을 확인하고 주문하실 수 있습니다</li>
+    </ul>
+  </div>
+</section>
+
+<footer>홍합몰 · 삼보수산 | 경남 창원시 마산합포구 · 고객센터 055-271-0589</footer>
+
+</body>
+</html>
