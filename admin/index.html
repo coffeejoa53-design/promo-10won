@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>홍합몰 어드민 · 어디서 왔는지</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --navy:#1d3557; --red:#e63946; --green:#0f7d6c; --bg:#f6f8fa; --line:#e3e8ee; --text:#2b2f36; --dim:#667085; --yellow:#ffd166; }
+  body { font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic",sans-serif; color:var(--text); background:var(--bg); font-size:17px; line-height:1.55; word-break:keep-all; }
+  a { color:var(--navy); }
+  .top { background:var(--navy); color:#fff; padding:16px 0; }
+  .wrap { max-width:1040px; margin:0 auto; padding:0 18px; }
+  .top .wrap { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  .top h1 { font-size:20px; font-weight:800; }
+  .top h1 small { font-weight:500; color:#cfd8e3; font-size:14px; margin-left:8px; }
+  .top .right { display:flex; gap:8px; align-items:center; font-size:14px; color:#cfd8e3; }
+  .tabs { display:flex; gap:6px; margin:18px 0 12px; flex-wrap:wrap; }
+  .tab { border:2px solid var(--line); background:#fff; border-radius:12px; padding:10px 18px; font-size:17px; font-weight:700; cursor:pointer; color:var(--dim); }
+  .tab.on { border-color:var(--navy); color:var(--navy); }
+  .card { background:#fff; border:2px solid var(--line); border-radius:16px; padding:22px; margin-bottom:16px; }
+  .card h2 { font-size:21px; color:var(--navy); font-weight:800; margin-bottom:6px; }
+  .card .desc { color:var(--dim); font-size:15px; margin-bottom:16px; }
+  .row { display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; }
+  .field { display:flex; flex-direction:column; gap:4px; min-width:160px; flex:1; }
+  .field label { font-size:14px; font-weight:700; color:var(--dim); }
+  .field .hint { font-size:13px; color:var(--dim); }
+  input[type=text], input[type=password], select, textarea { font:inherit; font-size:17px; padding:10px 12px; border:2px solid var(--line); border-radius:10px; width:100%; background:#fff; }
+  input:focus, select:focus { outline:none; border-color:var(--navy); }
+  .btn { font:inherit; font-size:17px; font-weight:800; padding:11px 18px; border-radius:12px; border:0; cursor:pointer; background:var(--navy); color:#fff; white-space:nowrap; }
+  .btn.red { background:var(--red); }
+  .btn.ghost { background:#fff; color:var(--navy); border:2px solid var(--line); font-weight:700; }
+  .btn.sm { font-size:14px; padding:6px 10px; border-radius:8px; }
+  .btn:disabled { opacity:.5; cursor:default; }
+  .chan { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:10px; margin:10px 0 16px; }
+  .chan label { display:block; border:2px solid var(--line); border-radius:12px; padding:12px; cursor:pointer; background:#fff; }
+  .chan label.on { border-color:var(--navy); background:#eef3fa; }
+  .chan label.off { opacity:.45; }
+  .chan .nm { font-weight:800; font-size:16px; }
+  .chan .sm { font-size:13px; color:var(--dim); margin-top:2px; }
+  .chan code { font-size:12px; color:var(--navy); background:#eef3fa; padding:1px 5px; border-radius:5px; }
+  .preview { background:var(--bg); border-radius:10px; padding:12px; font-size:14px; word-break:break-all; margin-top:12px; color:var(--dim); }
+  .preview b { color:var(--text); }
+  table { width:100%; border-collapse:collapse; font-size:15px; }
+  th, td { text-align:left; padding:9px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:13px; color:var(--dim); font-weight:700; white-space:nowrap; }
+  td.num, th.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .tblwrap { overflow-x:auto; }
+  .short { font-family:ui-monospace,Consolas,monospace; font-size:14px; color:var(--navy); font-weight:700; }
+  .long { font-size:12px; color:var(--dim); word-break:break-all; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-bottom:16px; }
+  .tile { background:#fff; border:2px solid var(--line); border-radius:14px; padding:14px 16px; }
+  .tile .k { font-size:13px; color:var(--dim); font-weight:700; }
+  .tile .v { font-size:30px; font-weight:800; color:var(--navy); line-height:1.2; margin-top:2px; }
+  .tile .s { font-size:12px; color:var(--dim); }
+  .period { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px; align-items:center; }
+  .bars { display:flex; gap:3px; align-items:flex-end; height:140px; padding-top:8px; border-bottom:2px solid var(--line); overflow-x:auto; }
+  .bar { flex:1; min-width:14px; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; gap:2px; height:100%; position:relative; }
+  .bar i { display:block; width:100%; border-radius:3px 3px 0 0; }
+  .bar i.c { background:#9fb0c3; }
+  .bar i.t { background:var(--red); }
+  .bar em { position:absolute; bottom:-20px; font-size:10px; color:var(--dim); font-style:normal; white-space:nowrap; }
+  .legend { display:flex; gap:14px; font-size:13px; color:var(--dim); margin:26px 0 4px; }
+  .legend i { display:inline-block; width:12px; height:12px; border-radius:3px; vertical-align:-1px; margin-right:4px; }
+  .msg { padding:12px 14px; border-radius:10px; font-size:15px; margin-top:12px; }
+  .msg.ok { background:#e6f4f1; color:var(--green); }
+  .msg.err { background:#fdecee; color:var(--red); }
+  .banner { background:#fff8e1; border:2px solid var(--yellow); border-radius:14px; padding:16px 20px; margin:16px 0; font-size:15px; }
+  .banner b { color:var(--navy); }
+  .banner ol { margin:8px 0 0 20px; }
+  .banner li { margin:3px 0; }
+  .muted { color:var(--dim); font-size:14px; }
+  .pill { display:inline-block; font-size:12px; padding:2px 8px; border-radius:999px; background:#eef3fa; color:var(--navy); font-weight:700; }
+  .pill.gray { background:#eee; color:#777; }
+  .copy { font-size:13px; padding:4px 8px; border-radius:7px; border:1px solid var(--line); background:#fff; cursor:pointer; color:var(--navy); font-weight:700; }
+  .copy:active { background:#eef3fa; }
+  details { margin-top:12px; }
+  summary { cursor:pointer; color:var(--navy); font-weight:700; font-size:15px; }
+  [hidden] { display:none !important; }
+  @media (max-width:640px) { body { font-size:16px; } .card { padding:16px; } .tile .v { font-size:26px; } }
+</style>
+</head>
+<body>
+
+<div class="top"><div class="wrap">
+  <h1>홍합몰 어드민 <small>어디서 왔는지 · UTM 빌더 · 성과</small></h1>
+  <div class="right"><span id="whoami"></span><button class="btn ghost sm" id="logoutBtn" hidden>로그아웃</button></div>
+</div></div>
+
+<div class="wrap">
+
+  <div class="banner" id="setupBanner" hidden></div>
+
+  <!-- 로그인 -->
+  <div class="card" id="loginCard" hidden>
+    <h2>들어가기</h2>
+    <p class="desc">사장님만 보는 화면입니다. Vercel 에 넣어 둔 어드민 비밀번호를 입력하세요.</p>
+    <form id="loginForm" class="row">
+      <div class="field" style="max-width:320px"><label>비밀번호</label><input type="password" id="passcode" autocomplete="current-password"></div>
+      <button class="btn" type="submit">들어가기</button>
+    </form>
+    <div id="loginMsg"></div>
+  </div>
+
+  <div id="app" hidden>
+    <div class="tabs">
+      <button class="tab on" data-tab="build">링크 만들기</button>
+      <button class="tab" data-tab="ledger">링크 장부</button>
+      <button class="tab" data-tab="stats">성과</button>
+    </div>
+
+    <!-- 링크 만들기 -->
+    <section id="tab-build">
+      <div class="card">
+        <h2>1. 어디에 뿌릴 링크인가요?</h2>
+        <p class="desc">뿌리는 자리마다 다른 링크를 씁니다. 같은 링크를 세 군데에 던지면 세 군데를 구분할 수 없어요. 여러 개를 골라 한 번에 만들 수 있습니다.</p>
+        <div class="chan" id="chanList"></div>
+        <details><summary>채널 추가 · 숨기기</summary>
+          <div class="row" style="margin-top:10px">
+            <div class="field"><label>코드 (영문)</label><input type="text" id="chCode" placeholder="예: yt-desc"></div>
+            <div class="field"><label>이름</label><input type="text" id="chName" placeholder="예: 유튜브 설명란"></div>
+            <div class="field"><label>utm_source</label><input type="text" id="chSource" placeholder="예: youtube"></div>
+            <div class="field"><label>utm_medium</label><input type="text" id="chMedium" placeholder="예: video"></div>
+            <div class="field" style="max-width:150px"><label>소재 방식</label><select id="chMode"><option value="none">없음</option><option value="serial">순번</option><option value="date">날짜</option><option value="free">자유</option></select></div>
+            <div class="field" style="max-width:130px"><label>순번 접두어</label><input type="text" id="chPrefix" placeholder="예: ep"></div>
+            <button class="btn ghost" id="chAdd">채널 추가</button>
+          </div>
+          <p class="muted" style="margin-top:8px">숨기기는 카드 안의 「숨기기」를 누르세요. 숨긴 채널의 링크는 그대로 살아 있습니다.</p>
+        </details>
+      </div>
+
+      <div class="card">
+        <h2>2. 어떤 건인가요?</h2>
+        <p class="desc">캠페인은 묶음 이름입니다. 한 번 정하면 바꾸지 마세요. 소재는 같은 자리에 여러 번 뿌릴 때 구분하는 번호예요.</p>
+        <div class="row">
+          <div class="field"><label>캠페인 (utm_campaign)</label><input type="text" id="campaign"><span class="hint">영문·숫자·하이픈. 예: honghap-10won, chuseok-2026</span></div>
+          <div class="field"><label>소재 (utm_content)</label><input type="text" id="content"><span class="hint" id="contentHint">채널 하나를 고르면 다음 번호를 제안합니다</span></div>
+          <div class="field"><label>메모 (어디에 뿌리나)</label><input type="text" id="label" placeholder="예: 9/16 블로그 제철 글"></div>
+        </div>
+        <details><summary>고급: 검색 키워드(utm_term) · 직접 입력</summary>
+          <div class="row" style="margin-top:10px">
+            <div class="field"><label>utm_term</label><input type="text" id="term" placeholder="검색광고가 아니면 비워 두세요"></div>
+          </div>
+          <div class="row" style="margin-top:10px">
+            <div class="field"><label>직접 source</label><input type="text" id="mSource" placeholder="예: naver-cafe"></div>
+            <div class="field"><label>직접 medium</label><input type="text" id="mMedium" placeholder="예: comment"></div>
+            <button class="btn ghost" id="mMake">직접 입력으로 만들기</button>
+          </div>
+        </details>
+        <div class="preview" id="preview">채널을 고르면 만들어질 주소를 미리 보여 줍니다.</div>
+        <div class="row" style="margin-top:14px">
+          <button class="btn red" id="makeBtn">링크 만들기</button>
+          <span class="muted" id="makeNote"></span>
+        </div>
+        <div id="makeMsg"></div>
+        <div id="madeList" style="margin-top:14px"></div>
+      </div>
+    </section>
+
+    <!-- 링크 장부 -->
+    <section id="tab-ledger" hidden>
+      <div class="card">
+        <h2>링크 장부</h2>
+        <p class="desc">만든 링크 전부. 짧은 주소를 복사해서 뿌리면 됩니다. 클릭은 짧은 주소를 누른 누적 수예요.</p>
+        <div class="row" style="margin-bottom:10px"><label class="muted"><input type="checkbox" id="showArchived"> 보관한 링크도 보기</label><button class="btn ghost sm" id="reloadLedger">새로고침</button></div>
+        <div class="tblwrap"><table id="ledger"><thead><tr><th>채널</th><th>소재</th><th>메모</th><th>짧은 링크</th><th>긴 링크</th><th class="num">클릭</th><th>만든 날</th><th></th></tr></thead><tbody></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- 성과 -->
+    <section id="tab-stats" hidden>
+      <div class="period">
+        <button class="btn ghost sm" data-p="today">오늘</button>
+        <button class="btn ghost sm" data-p="7d">7일</button>
+        <button class="btn ghost sm" data-p="30d">30일</button>
+        <button class="btn ghost sm" data-p="all">전체</button>
+        <span class="muted" id="rangeLabel"></span>
+      </div>
+      <div class="tiles">
+        <div class="tile"><div class="k">클릭</div><div class="v" id="sClicks">–</div><div class="s">짧은 링크를 누른 수</div></div>
+        <div class="tile"><div class="k">도달</div><div class="v" id="sViews">–</div><div class="s">랜딩에 실제로 들어온 수</div></div>
+        <div class="tile"><div class="k">전환</div><div class="v" id="sCtas">–</div><div class="s">「스토어에서 쿠폰 받기」 누른 수</div></div>
+        <div class="tile"><div class="k">전환율</div><div class="v" id="sRate">–</div><div class="s">전환 ÷ 클릭</div></div>
+        <div class="tile"><div class="k">활성 링크</div><div class="v" id="sLinks">–</div><div class="s">보관 안 한 링크 수</div></div>
+      </div>
+      <div class="card">
+        <h2>채널별</h2>
+        <p class="desc">어느 채널이 제일 잘 굴렀나. 전환 많은 순.</p>
+        <div class="tblwrap"><table id="chanTable"><thead><tr><th>채널</th><th class="num">링크 수</th><th class="num">클릭</th><th class="num">도달</th><th class="num">전환</th><th class="num">전환율</th></tr></thead><tbody></tbody></table></div>
+        <div id="unmatchedWrap" hidden><p class="muted" style="margin-top:14px">장부에 없는 경로로 들어온 사람 (UTM 없이 주소를 직접 친 경우 등)</p><div class="tblwrap"><table id="unmatchedTable"><thead><tr><th>경로</th><th class="num">도달</th><th class="num">전환</th></tr></thead><tbody></tbody></table></div></div>
+      </div>
+      <div class="card">
+        <h2>일별 추이</h2>
+        <div class="bars" id="bars"></div>
+        <div class="legend"><span><i style="background:#9fb0c3"></i>클릭</span><span><i style="background:var(--red)"></i>전환</span></div>
+      </div>
+      <div class="card">
+        <h2>링크별</h2>
+        <div class="tblwrap"><table id="linkTable"><thead><tr><th>채널</th><th>소재</th><th>메모</th><th>짧은 링크</th><th class="num">클릭</th><th class="num">도달</th><th class="num">전환</th><th class="num">전환율</th></tr></thead><tbody></tbody></table></div>
+      </div>
+      <p class="muted">숫자는 서버가 실제로 센 값만 보여 줍니다. 도달·전환은 브라우저 세션 기준으로 중복을 뺀 수라 클릭보다 작을 수 있고, 링크 미리보기 봇의 클릭은 세지 않습니다.</p>
+    </section>
+  </div>
+</div>
+
+<script src="/lib/utm.js"></script>
+<script>
+(function () {
+  var U = window.SamboUtm;
+  var $ = function (id) { return document.getElementById(id); };
+  var state = { channels: [], links: [], selected: {}, contentTouched: false, period: "7d", showArchived: false };
+
+  function api(path, opts) {
+    opts = opts || {};
+    return fetch(path, {
+      method: opts.method || "GET",
+      headers: opts.body ? { "Content-Type": "application/json" } : {},
+      body: opts.body ? JSON.stringify(opts.body) : undefined,
+      credentials: "same-origin"
+    }).then(function (r) { return r.json().catch(function () { return { ok: false, error: "parse", status: r.status }; }).then(function (j) { j._status = r.status; return j; }); });
+  }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function fmtDate(iso) { if (!iso) return ""; var d = new Date(iso); return (d.getMonth() + 1) + "/" + d.getDate(); }
+  function msg(el, text, ok) { el.innerHTML = text ? '<div class="msg ' + (ok ? "ok" : "err") + '">' + esc(text) + "</div>" : ""; }
+  function copyText(t, btn) {
+    var done = function () { if (btn) { var o = btn.textContent; btn.textContent = "복사됨"; setTimeout(function () { btn.textContent = o; }, 1200); } };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, function () { fallback(); });
+    else fallback();
+    function fallback() { var ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (_) {} document.body.removeChild(ta); done(); }
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-copy]");
+    if (b) copyText(b.getAttribute("data-copy"), b);
+  });
+
+  // ---------- 설정 상태 · 로그인 ----------
+  function showSetup(info) {
+    var items = [];
+    if (!info.configured) items.push("Vercel 환경변수 <b>ADMIN_PASSCODE</b> (8자 이상)가 없습니다.");
+    if (!info.db) items.push("Vercel 환경변수 <b>SUPABASE_URL</b> · <b>SUPABASE_SERVICE_ROLE_KEY</b> 가 없습니다. Supabase 프로젝트를 만들고 SQL(supabase/migrations)을 실행한 뒤 넣어 주세요.");
+    var el = $("setupBanner");
+    if (!items.length) { el.hidden = true; return; }
+    el.hidden = false;
+    el.innerHTML = "<b>아직 세팅이 끝나지 않았습니다.</b> 순서는 저장소의 <code>docs/어드민_설정_안내.md</code> 에 있습니다.<ol>" + items.map(function (i) { return "<li>" + i + "</li>"; }).join("") + "</ol><p class=\"muted\" style=\"margin-top:6px\">환경변수를 넣은 뒤 Vercel 에서 Redeploy 해야 반영됩니다. DB 가 없어도 아래에서 주소 미리보기는 됩니다.</p>";
+  }
+
+  function boot() {
+    api("/api/admin/session").then(function (info) {
+      showSetup(info);
+      if (info.ok) enter(info.db);
+      else { $("loginCard").hidden = false; $("app").hidden = true; $("logoutBtn").hidden = true; if (!info.configured) $("loginForm").querySelector("button").disabled = true; }
+    });
+  }
+
+  $("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    msg($("loginMsg"), "");
+    api("/api/admin/session", { method: "POST", body: { passcode: $("passcode").value } }).then(function (r) {
+      if (r.ok) { $("passcode").value = ""; enter(r.db); }
+      else msg($("loginMsg"), r.error === "no_passcode" ? r.message : "비밀번호가 맞지 않습니다.", false);
+    });
+  });
+  $("logoutBtn").addEventListener("click", function () { api("/api/admin/session", { method: "DELETE" }).then(boot); });
+
+  function enter(hasDb) {
+    $("loginCard").hidden = true; $("app").hidden = false; $("logoutBtn").hidden = false;
+    $("whoami").textContent = "사장님";
+    $("campaign").value = $("campaign").value || U.DEFAULT_CAMPAIGN;
+    state.hasDb = hasDb;
+    if (hasDb) { loadChannels(); loadLinks(); }
+    else { renderChannels(); $("makeNote").textContent = "DB 미연결: 미리보기만 됩니다."; }
+  }
+
+  // ---------- 탭 ----------
+  document.querySelectorAll(".tab").forEach(function (t) {
+    t.addEventListener("click", function () {
+      document.querySelectorAll(".tab").forEach(function (x) { x.classList.toggle("on", x === t); });
+      ["build", "ledger", "stats"].forEach(function (k) { $("tab-" + k).hidden = k !== t.dataset.tab; });
+      if (t.dataset.tab === "stats") loadStats();
+      if (t.dataset.tab === "ledger") loadLinks();
+    });
+  });
+
+  // ---------- 채널 ----------
+  function loadChannels() {
+    return api("/api/admin/channels").then(function (r) { if (r.ok) { state.channels = r.channels; renderChannels(); } });
+  }
+  function renderChannels() {
+    var el = $("chanList");
+    if (!state.channels.length) { el.innerHTML = '<p class="muted">채널이 없습니다. DB 를 연결하면 기본 채널 9개가 들어옵니다.</p>'; return; }
+    el.innerHTML = state.channels.map(function (c) {
+      var on = state.selected[c.id];
+      return '<label class="' + (on ? "on " : "") + (c.active ? "" : "off") + '" data-id="' + c.id + '">' +
+        '<input type="checkbox" ' + (on ? "checked" : "") + ' style="margin-right:6px">' + '<span class="nm">' + esc(c.name) + "</span>" +
+        '<div class="sm"><code>' + esc(c.source) + "</code> / <code>" + esc(c.medium) + "</code></div>" +
+        (c.note ? '<div class="sm">' + esc(c.note) + "</div>" : "") +
+        '<div class="sm" style="margin-top:6px"><button type="button" class="copy" data-toggle="' + c.id + '">' + (c.active ? "숨기기" : "다시 보이기") + "</button></div>" +
+        "</label>";
+    }).join("");
+    el.querySelectorAll("input[type=checkbox]").forEach(function (cb) {
+      cb.addEventListener("change", function () {
+        var id = cb.closest("label").dataset.id;
+        if (cb.checked) state.selected[id] = true; else delete state.selected[id];
+        renderChannels(); suggest(); preview();
+      });
+    });
+    el.querySelectorAll("[data-toggle]").forEach(function (b) {
+      b.addEventListener("click", function (e) {
+        e.preventDefault(); e.stopPropagation();
+        var c = state.channels.filter(function (x) { return x.id === b.dataset.toggle; })[0];
+        api("/api/admin/channels", { method: "PATCH", body: { id: c.id, active: !c.active } }).then(loadChannels);
+      });
+    });
+  }
+  $("chAdd").addEventListener("click", function (e) {
+    e.preventDefault();
+    api("/api/admin/channels", { method: "POST", body: { code: $("chCode").value, name: $("chName").value, source: $("chSource").value, medium: $("chMedium").value, content_mode: $("chMode").value, content_prefix: $("chPrefix").value } })
+      .then(function (r) { if (r.ok) { ["chCode", "chName", "chSource", "chMedium", "chPrefix"].forEach(function (i) { $(i).value = ""; }); loadChannels(); } else alert(r.message || "추가 실패"); });
+  });
+
+  // ---------- 빌더 ----------
+  function selectedChannels() { return state.channels.filter(function (c) { return state.selected[c.id]; }); }
+  function suggest() {
+    var sel = selectedChannels();
+    if (state.contentTouched) return;
+    if (sel.length === 1) {
+      var mine = state.links.filter(function (l) { return l.channel_id === sel[0].id; });
+      var s = U.suggestContent(sel[0], mine);
+      $("content").value = s;
+      $("contentHint").textContent = sel[0].content_mode === "serial" ? "다음 번호를 제안했습니다. 고쳐도 됩니다." : sel[0].content_mode === "date" ? "오늘 날짜를 넣었습니다." : sel[0].content_mode === "none" ? "이 채널은 소재 없이 하나만 씁니다." : "소재 이름을 영문으로 적으세요.";
+    } else {
+      $("contentHint").textContent = sel.length > 1 ? "여러 채널을 골랐습니다. 소재는 전부 같은 값이 붙습니다." : "채널 하나를 고르면 다음 번호를 제안합니다";
+    }
+  }
+  function preview() {
+    var sel = selectedChannels();
+    var el = $("preview");
+    if (!sel.length) { el.innerHTML = "채널을 고르면 만들어질 주소를 미리 보여 줍니다."; return; }
+    el.innerHTML = sel.map(function (c) {
+      var url = U.buildUtmUrl(U.LANDING_URL, { source: c.source, medium: c.medium, campaign: $("campaign").value, content: $("content").value, term: $("term").value });
+      return "<b>" + esc(c.name) + "</b> → " + esc(url);
+    }).join("<br>");
+    var bad = [$("campaign").value, $("content").value, $("term").value].some(U.hasHangul);
+    $("makeNote").textContent = bad ? "한글은 쓸 수 없습니다. 영문·숫자·하이픈만." : "";
+    $("makeBtn").disabled = bad || !state.hasDb;
+  }
+  ["campaign", "content", "term"].forEach(function (id) { $(id).addEventListener("input", function () { if (id === "content") state.contentTouched = true; preview(); }); });
+
+  $("makeBtn").addEventListener("click", function () {
+    var ids = Object.keys(state.selected);
+    if (!ids.length) { msg($("makeMsg"), "채널을 하나 이상 고르세요.", false); return; }
+    $("makeBtn").disabled = true;
+    api("/api/admin/links", { method: "POST", body: { channelIds: ids, campaign: $("campaign").value, content: $("content").value, term: $("term").value, label: $("label").value } }).then(afterMake);
+  });
+  $("mMake").addEventListener("click", function (e) {
+    e.preventDefault();
+    api("/api/admin/links", { method: "POST", body: { manual: { source: $("mSource").value, medium: $("mMedium").value, campaign: $("campaign").value, content: $("content").value, term: $("term").value, label: $("label").value } } }).then(afterMake);
+  });
+  function afterMake(r) {
+    $("makeBtn").disabled = false;
+    if (!r.ok) { msg($("makeMsg"), r.message || (r.error === "no_db" ? "DB 가 아직 연결되지 않았습니다." : "만들지 못했습니다."), false); return; }
+    var made = r.results.filter(function (x) { return !x.existed; }).length;
+    var dup = r.results.length - made;
+    msg($("makeMsg"), "링크 " + made + "개를 만들었습니다." + (dup ? " (" + dup + "개는 이미 있던 조합이라 그대로 씁니다)" : ""), true);
+    $("madeList").innerHTML = r.results.map(function (x) {
+      var l = x.link; var s = U.shortUrl(l.short_code);
+      return '<div class="card" style="padding:14px;margin-bottom:8px"><div><span class="pill">' + esc(l.channel ? l.channel.name : l.source + " / " + l.medium) + "</span> " + (l.content ? '<span class="pill gray">' + esc(l.content) + "</span> " : "") + (x.existed ? '<span class="pill gray">기존</span>' : "") + "</div>" +
+        '<div style="margin-top:8px"><span class="short">' + esc(s) + '</span> <button class="copy" data-copy="' + esc(s) + '">짧은 주소 복사</button></div>' +
+        '<div class="long" style="margin-top:4px">' + esc(l.url) + ' <button class="copy" data-copy="' + esc(l.url) + '">긴 주소 복사</button></div></div>';
+    }).join("");
+    state.contentTouched = false; state.selected = {};
+    loadLinks().then(function () { renderChannels(); suggest(); preview(); });
+  }
+
+  // ---------- 장부 ----------
+  function loadLinks() {
+    if (!state.hasDb) return Promise.resolve();
+    return api("/api/admin/links" + (state.showArchived ? "?all=1" : "")).then(function (r) { if (r.ok) { state.links = r.links; renderLedger(); } });
+  }
+  $("showArchived").addEventListener("change", function () { state.showArchived = this.checked; loadLinks(); });
+  $("reloadLedger").addEventListener("click", loadLinks);
+  function renderLedger() {
+    var tb = $("ledger").querySelector("tbody");
+    if (!state.links.length) { tb.innerHTML = '<tr><td colspan="8" class="muted">아직 만든 링크가 없습니다.</td></tr>'; return; }
+    tb.innerHTML = state.links.map(function (l) {
+      var s = U.shortUrl(l.short_code);
+      return "<tr" + (l.archived ? ' style="opacity:.5"' : "") + "><td>" + esc(l.channel ? l.channel.name : l.source + " / " + l.medium) + "</td><td>" + esc(l.content || "") + "</td><td>" + esc(l.label || "") + "</td>" +
+        '<td><span class="short">' + esc(s) + '</span><br><button class="copy" data-copy="' + esc(s) + '">복사</button></td>' +
+        '<td class="long">' + esc(l.url) + '<br><button class="copy" data-copy="' + esc(l.url) + '">복사</button></td>' +
+        '<td class="num">' + (l.clicks || 0) + "</td><td>" + fmtDate(l.created_at) + '</td><td><button class="copy" data-arch="' + l.id + '" data-v="' + (l.archived ? "0" : "1") + '">' + (l.archived ? "복구" : "보관") + "</button></td></tr>";
+    }).join("");
+    tb.querySelectorAll("[data-arch]").forEach(function (b) {
+      b.addEventListener("click", function () { api("/api/admin/links", { method: "PATCH", body: { id: b.dataset.arch, archived: b.dataset.v === "1" } }).then(loadLinks); });
+    });
+  }
+
+  // ---------- 성과 ----------
+  document.querySelectorAll("[data-p]").forEach(function (b) { b.addEventListener("click", function () { state.period = b.dataset.p; loadStats(); }); });
+  function loadStats() {
+    document.querySelectorAll("[data-p]").forEach(function (b) { b.classList.toggle("on", b.dataset.p === state.period); b.style.borderColor = b.dataset.p === state.period ? "var(--navy)" : ""; });
+    if (!state.hasDb) { $("rangeLabel").textContent = "DB 가 연결되면 숫자가 나옵니다."; return; }
+    api("/api/admin/stats?period=" + state.period).then(function (r) {
+      if (!r.ok) { $("rangeLabel").textContent = "불러오지 못했습니다: " + (r.message || r.error); return; }
+      $("rangeLabel").textContent = r.range.from + " ~ " + r.range.to + " (한국 시간)";
+      $("sClicks").textContent = r.summary.clicks; $("sViews").textContent = r.summary.views; $("sCtas").textContent = r.summary.ctas; $("sRate").textContent = r.summary.rate; $("sLinks").textContent = r.summary.active_links;
+      var ct = $("chanTable").querySelector("tbody");
+      ct.innerHTML = r.channels.length ? r.channels.map(function (c) { return "<tr><td>" + esc(c.channel) + '</td><td class="num">' + c.links + '</td><td class="num">' + c.clicks + '</td><td class="num">' + c.views + '</td><td class="num">' + c.ctas + '</td><td class="num">' + c.rate + "</td></tr>"; }).join("") : '<tr><td colspan="6" class="muted">아직 데이터가 없습니다. 링크를 만들어 뿌리면 여기에 쌓입니다.</td></tr>';
+      $("unmatchedWrap").hidden = !r.unmatched.length;
+      $("unmatchedTable").querySelector("tbody").innerHTML = r.unmatched.map(function (u) { return "<tr><td>" + esc(u.label) + '</td><td class="num">' + u.views + '</td><td class="num">' + u.ctas + "</td></tr>"; }).join("");
+      var max = Math.max(1, Math.max.apply(null, r.daily.map(function (d) { return Math.max(d.clicks, d.ctas); })));
+      $("bars").innerHTML = r.daily.map(function (d) {
+        return '<div class="bar" title="' + d.date + " 클릭 " + d.clicks + " · 전환 " + d.ctas + '"><i class="c" style="height:' + Math.round(d.clicks / max * 100) + '%"></i><i class="t" style="height:' + Math.round(d.ctas / max * 100) + '%"></i><em>' + d.date.slice(5).replace("-", "/") + "</em></div>";
+      }).join("");
+      var lt = $("linkTable").querySelector("tbody");
+      var rows = r.links.filter(function (l) { return !l.archived || l.clicks; });
+      lt.innerHTML = rows.length ? rows.map(function (l) { return "<tr><td>" + esc(l.channel || l.source + " / " + l.medium) + "</td><td>" + esc(l.content || "") + "</td><td>" + esc(l.label || "") + '</td><td class="short">/l/' + esc(l.short_code) + '</td><td class="num">' + l.clicks + '</td><td class="num">' + l.views + '</td><td class="num">' + l.ctas + '</td><td class="num">' + l.rate + "</td></tr>"; }).join("") : '<tr><td colspan="8" class="muted">링크가 없습니다.</td></tr>';
+    });
+  }
+
+  boot();
+})();
+</script>
+</body>
+</html>
